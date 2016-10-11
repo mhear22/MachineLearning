@@ -5,8 +5,9 @@
 class Layer 
 {
 public:
-	Layer();
-	void AddNode(Node* node);
+	Layer(int inputNodes);
+	void AddNode();
 private:
 	std::vector<Node*> nodes;
+	int INPUT_NODE_COUNT;
 };

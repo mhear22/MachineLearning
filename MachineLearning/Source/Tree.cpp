@@ -13,9 +13,13 @@ Tree::Tree()
 
 void Tree::Test()
 {
+	int DataCount = ReadData(testData);
+	BuildLayers(DataCount);
 	float currentRMS = 1;
+	int count = 0;
 	while (currentRMS > RMS_ERROR_TARGET)
 	{
+		
 		currentRMS = Test(LEARNING_RATE);
 	}
 }
@@ -30,15 +34,22 @@ float Tree::Test(float learningRate)
 	return 0.0f;
 }
 
-void Tree::BuildLayers()
+int Tree::ReadData(string data)
+{
+	
+	return 0;
+}
+
+void Tree::BuildLayers(int InputLayerCount)
 {
 	for (int x = 0; x < LAYER_COUNT; x++)
 	{
-		Layer* layer = new Layer();
+		Layer* layer = new Layer(InputLayerCount);
 		for (int y = 0; y < NODES_PER_LAYER; y++)
 		{
-			layer->AddNode(new Node());
+			layer->AddNode();
 		}
 		layers.push_back(layer);
+		InputLayerCount = NODES_PER_LAYER;
 	}
 }

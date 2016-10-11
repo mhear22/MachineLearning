@@ -1,8 +1,8 @@
 #include "Node.h"
 
-Node::Node()
+Node::Node(int ConnectedNodes)
 {
-	
+	CONNECTED_NODES = ConnectedNodes;
 }
 
 int Node::Calculate(std::vector<int> input, int count)
