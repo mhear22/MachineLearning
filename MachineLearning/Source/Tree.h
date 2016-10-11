@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Header.h"
+#include "Layer.h"
 
 using namespace std;
 
@@ -11,9 +12,19 @@ public:
 	void Test();
 	int Run();
 
-	bool RMS_ERROR;
+	float RMS_ERROR_TARGET;
 	int ITERATION_COUNT;
 	string testData;
 	string testResults;
 	string Data;
+private:
+	float LEARNING_RATE;
+
+	float LAYER_COUNT;
+	float NODES_PER_LAYER;
+
+	vector<Layer*> layers;
+
+	float Test(float learningRate);
+	void BuildLayers();
 };
