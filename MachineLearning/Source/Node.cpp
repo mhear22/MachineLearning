@@ -12,4 +12,5 @@ int Node::Calculate(std::vector<int> input, int count)
 
 void Node::Update(std::vector<int> weightingsAdjustment)
 {
+	
 }
