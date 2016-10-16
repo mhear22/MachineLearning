@@ -17,12 +17,14 @@ void Tree::Test()
 {
 	for each (auto item in testFiles)
 	{
-		ReadData(item);
+		testData.push_back(ReadData(item));
 	}
 	BuildLayers(InputLayerCount);
 
 	float currentRMS = 1;
 	int count = 0;
+
+
 	for (int i = 0; i < testData.size(); i++)
 	{
 		if (currentRMS > RMS_ERROR_TARGET)
@@ -85,12 +87,18 @@ vector<int> Tree::ReadData(string data)
 			stream >> x;
 			for (int i = 0; i < 12; i++)
 			{
-				result.push_back(x[i] == '*');
+				if (x[i] == '*') {
+					result.push_back(1);
+				}
+				else
+				{
+					result.push_back(0);
+				}
 			}
 		}
 	}
 
-	auto size = 12 * result.size();
+	auto size = result.size();
 
 	if (InputLayerCount == 0)
 	{
