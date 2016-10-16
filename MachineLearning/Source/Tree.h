@@ -25,7 +25,8 @@ private:
 
 	vector<Layer*> layers;
 
-	float Test(float learningRate);
-	int ReadData(string data);
+
+
+	vector<int>* ReadData(string data);
 	void BuildLayers(int InputLayerCount);
 };

@@ -13,31 +13,49 @@ Tree::Tree()
 
 void Tree::Test()
 {
-	int DataCount = ReadData(testData);
-	BuildLayers(DataCount);
+	vector<int>* DataCount = ReadData(testData);
+	BuildLayers(DataCount->size());
+
 	float currentRMS = 1;
 	int count = 0;
 	while (currentRMS > RMS_ERROR_TARGET)
 	{
-		
-		currentRMS = Test(LEARNING_RATE);
+		//Run once
+		//Test RMS
+		//Update RMS
 	}
 }
 
 int Tree::Run()
 {
+	//Run once
+	//Return value
 	return 0;
 }
 
-float Tree::Test(float learningRate)
+vector<int>* Tree::ReadData(string data)
 {
-	return 0.0f;
-}
+	fstream stream;
 
-int Tree::ReadData(string data)
-{
-	
-	return 0;
+	stream.open(data);
+	vector<int>* result;
+	char x[12];
+
+	if (stream.is_open())
+	{
+		while (!stream.eof())
+		{
+			stream >> x;
+			for (int i = 0; i < 12; i++)
+			{
+				result->push_back(x[i] == '*');
+			}
+		}
+	}
+
+	stream.close();
+
+	return result;
 }
 
 void Tree::BuildLayers(int InputLayerCount)

@@ -1,7 +1,6 @@
 //-h or -help or ? should return help page
 //-s or -start {filename} should open the file
 //-t or -test {Filename, Items to test with} the training data that should be opened
-//-o or -outcome {Filename, Results that should be expected} the results from the training data
 //-r or -rms {frequency integer} should show the RMS Error on iteration
 //-e or -error {Percent} should be the percentage inaccuracy
 //-q or -quit or q or quit should quit
@@ -30,8 +29,6 @@ void RunArguments(Tree* tree,int argCount, char* arguments[])
 {
 	try
 	{
-		bool hasTest = false;
-		bool hasTestResults = false;
 
 		bool testTriggered = false;
 		bool runTriggered = false;
@@ -57,15 +54,6 @@ void RunArguments(Tree* tree,int argCount, char* arguments[])
 				i = i + 1;
 				tree->testData = file;
 				testTriggered = true;
-				hasTest = true;
-			}
-			else if (item == "-o" || item == "-outcome")
-			{
-				string file = getItem(i + 1, arguments, "File is required after flag");
-				i = i + 1;
-				tree->testResults = file;
-				hasTestResults = true;
-
 			}
 			else if (item == "-r" || item == "-rms")
 			{
@@ -83,11 +71,6 @@ void RunArguments(Tree* tree,int argCount, char* arguments[])
 			{
 				exit(0);
 			}
-		}
-
-		if (hasTest != hasTestResults)
-		{
-			throw "Test data needs to be accompanied by result data";
 		}
 
 		if (testTriggered)
