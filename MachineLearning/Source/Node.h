@@ -6,7 +6,7 @@ class Node
 {
 public:
 	Node(int ConnectedNodes);
-	int Calculate(std::vector<int> input, int count);
+	int Calculate(std::vector<int> input);
 	void Update(std::vector<int> weightingsAdjustment);
 private:
 	std::vector<int> Weightings;

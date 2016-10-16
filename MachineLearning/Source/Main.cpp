@@ -8,6 +8,7 @@
 //App should remember state so cycles can be operated again
 
 #include "Tree.h"
+#include "Header.h"
 
 using namespace std;
 
@@ -39,7 +40,11 @@ void RunArguments(Tree* tree,int argCount, char* arguments[])
 
 			if (item == "-h" || item == "-help")
 			{
-				printf("Help initiated");
+				printf("-h or -help shows the help");
+				printf("-s or -start followed by a file will run the test data and guess");
+				printf("-t or -test followed by a file will add to the training schedule");
+				printf("-r or -rms followed by a float will target the training data to that percentage");
+				printf("-q or -quit or quit will close the command line");
 			}
 			else if(item == "-s" || item == "-start")
 			{
@@ -52,19 +57,13 @@ void RunArguments(Tree* tree,int argCount, char* arguments[])
 			{
 				string file = getItem(i + 1, arguments, "File is required after flag");
 				i = i + 1;
-				tree->testData = file;
+				tree->testFiles.push_back(file);
 				testTriggered = true;
 			}
 			else if (item == "-r" || item == "-rms")
 			{
 				char* file = getItem(i + 1, arguments, "An integer is required after -rms flag");
 				int iterationCount = atoi(file);
-				i = i + 1;
-			}
-			else if (item == "-e" || item == "-error")
-			{
-				char* file = getItem(i+1, arguments, "A floating point is required after -error flag");
-				float error = strtof(file, NULL);
 				i = i + 1;
 			}
 			else if (item == "-q" || item == "-quit" || item == "q" || item == "quit")
@@ -98,6 +97,21 @@ int main(int argc, char* argv[])
 
 	while (true) {
 		RunArguments(&tree, argCount, arguments);
+		
+		char* result[256];
+		char* s = new char();
+		int count = 0; 
+		
+		while (true)
+		{
+			cin >> s;
+			if(s == "\n")
+				break;
+			result[count++] = s;
+		}
+
+		argCount = count;
+		arguments = result;
 
 		exit(0);
 		//Gather user Input

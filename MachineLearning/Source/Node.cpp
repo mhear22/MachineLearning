@@ -5,7 +5,7 @@ Node::Node(int ConnectedNodes)
 	CONNECTED_NODES = ConnectedNodes;
 }
 
-int Node::Calculate(std::vector<int> input, int count)
+int Node::Calculate(std::vector<int> input)
 {
 	return 0;
 }
