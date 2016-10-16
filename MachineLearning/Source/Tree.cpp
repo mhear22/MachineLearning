@@ -29,9 +29,12 @@ void Tree::Test()
 	{
 		if (currentRMS > RMS_ERROR_TARGET)
 		{
-			RunOnce(testData[i]);
+			auto result = RunOnce(testData[i]);
 			
-
+			for each (int item in result)
+			{
+				printf("%i \n", item);
+			}
 		}
 
 	}
